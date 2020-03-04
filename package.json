@@ -1,0 +1,38 @@
+{
+	"name": "@dzeio/markblog",
+	"version": "1.0.1",
+	"license": "MIT",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"server": "next start",
+		"export": "next export && node scripts/generateSitemap",
+		"serve": "serve out",
+		"prod:server": "yarn build && yarn server",
+		"prod:static": "yarn build && yarn export && yarn serve",
+		"lint": "eslint . --ext .ts,.tsx"
+	},
+	"dependencies": {
+		"@zeit/next-stylus": "^1.0.1",
+		"glob": "^7.1.6",
+		"next": "^9.1.7",
+		"next-compose-plugins": "^2.2.0",
+		"next-purgecss": "^3.1.2",
+		"react": "^16.12.0",
+		"react-dom": "^16.12.0",
+		"serve": "^11.3.0",
+		"styled-jsx-plugin-stylus": "^0.0.4",
+		"stylus": "^0.54.7",
+		"typescript": "^3.7.4",
+		"webpack": "^4.41.5",
+		"webpack-cli": "^3.3.10"
+	},
+	"devDependencies": {
+		"@types/node": "^13.1.4",
+		"@types/react": "^16.9.17",
+		"@typescript-eslint/eslint-plugin": "^2.19.0",
+		"@typescript-eslint/parser": "^2.19.0",
+		"eslint": "^6.8.0",
+		"eslint-plugin-react": "^7.18.3"
+	}
+}
