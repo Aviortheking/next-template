@@ -40,14 +40,16 @@ module.exports = {
 			"error",
 			"unix"
 		],
-		quotes: [
-			"error",
-			"single"
-		],
-		semi: [
-			"error",
-			"never"
-		],
+
+		quotes: "off",
+		"@typescript-eslint/quotes": ["error", "single", { avoidEscape: true }],
+
+		semi: "off",
+		"@typescript-eslint/semi": "error",
+
+		"no-unused-expressions": "off",
+		"@typescript-eslint/no-unused-expressions": ["error", { "allowTernary": true }],
+
 		"@typescript-eslint/adjacent-overload-signatures": "error",
 		"@typescript-eslint/array-type": [
 			"error",
@@ -109,7 +111,13 @@ module.exports = {
 			"error",
 			"as-needed"
 		],
-		camelcase: "error",
+
+		camelcase: "off",
+		"@typescript-eslint/camelcase": ["error", {
+			properties: "never",
+			allow: ["^[A-Za-z][a-zA-Za-z]+_[A-Za-z]+$"]
+		}],
+
 		"comma-dangle": [
 			"error",
 			"always-multiline"
@@ -168,7 +176,6 @@ module.exports = {
 		"no-undef-init": "error",
 		"no-underscore-dangle": "error",
 		"no-unsafe-finally": "error",
-		"no-unused-expressions": "error",
 		"no-unused-labels": "error",
 		"no-unused-vars": "off",
 		"no-var": "error",
@@ -183,14 +190,13 @@ module.exports = {
 			"consistent-as-needed"
 		],
 		"radix": "error",
-		"space-before-function-paren": [
-			"error",
-			{
-				anonymous: "never",
-				asyncArrow: "always",
-				named: "never"
-			}
-		],
+
+		"space-before-function-paren": "off",
+		"@typescript-eslint/space-before-function-paren": ["error", {
+			asyncArrow: "always",
+			anonymous: "never",
+			named: "never"
+		}],
 		"spaced-comment": "error",
 		"use-isnan": "error",
 		"valid-typeof": "off",
