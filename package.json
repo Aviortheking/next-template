@@ -10,7 +10,8 @@
 		"serve": "serve out",
 		"prod:server": "yarn build && yarn server",
 		"prod:static": "yarn build && yarn export && yarn serve",
-		"lint": "eslint . --ext .ts,.tsx"
+		"lint": "eslint . --ext .ts,.tsx",
+		"test": "jest --config jext.config.js"
 	},
 	"dependencies": {
 		"@zeit/next-stylus": "^1.0.1",
