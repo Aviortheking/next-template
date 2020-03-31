@@ -4,7 +4,7 @@ import React from 'react'
 
 import '../styl/index.styl'
 
-export default class Index extends App {
+export default class CApp extends App {
 
 	public render() {
 		const { Component, pageProps } = this.props
