@@ -7,7 +7,7 @@ module.exports = {
 	extends: [
 		"eslint:recommended",
 		"plugin:react/recommended",
-		"plugin:@typescript-eslint/eslint-recommended"
+		"plugin:@typescript-eslint/recommended"
 	],
 	globals: {
 		Atomics: "readonly",
@@ -42,10 +42,17 @@ module.exports = {
 		],
 
 		quotes: "off",
-		"@typescript-eslint/quotes": ["error", "single", { avoidEscape: true }],
+		"@typescript-eslint/quotes": [
+			"error",
+			"single",
+			{ avoidEscape: true }
+		],
 
 		semi: "off",
-		"@typescript-eslint/semi": "error",
+		"@typescript-eslint/semi": [
+			"error",
+			"never"
+		],
 
 		"no-unused-expressions": "off",
 		"@typescript-eslint/no-unused-expressions": ["error", { "allowTernary": true }],
@@ -57,8 +64,8 @@ module.exports = {
 				default: 'generic'
 			}
 		],
+		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/ban-types": "error",
-		"@typescript-eslint/class-name-casing": "error",
 		"@typescript-eslint/consistent-type-assertions": "error",
 		"@typescript-eslint/consistent-type-definitions": "error",
 		"@typescript-eslint/explicit-member-accessibility": [
@@ -92,36 +99,16 @@ module.exports = {
 		"@typescript-eslint/prefer-for-of": "error",
 		"@typescript-eslint/prefer-function-type": "error",
 		"@typescript-eslint/prefer-namespace-keyword": "error",
-		"@typescript-eslint/quotes": [
-			"error",
-			"single",
-			{
-				avoidEscape: true
-			}
-		],
-		"@typescript-eslint/semi": [
-			"error",
-			"never"
-		],
+
 		"@typescript-eslint/triple-slash-reference": "error",
 		"@typescript-eslint/type-annotation-spacing": "error",
 		"@typescript-eslint/unified-signatures": "error",
 		"arrow-body-style": "error",
 		"arrow-parens": [
 			"error",
-			"as-needed"
+			"always"
 		],
 
-		camelcase: "off",
-		"@typescript-eslint/camelcase": ["error", {
-			properties: "never",
-			allow: ["^[A-Za-z][a-zA-Za-z]+_[A-Za-z]+$"]
-		}],
-
-		"comma-dangle": [
-			"error",
-			"always-multiline"
-		],
 		complexity: "off",
 		"constructor-super": "error",
 		curly: "error",

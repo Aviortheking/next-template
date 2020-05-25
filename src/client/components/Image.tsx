@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react'
-import css from './Image.module.styl'
+import css from '@smd/Image.module.styl'
 
 interface Props {
 	defaultHeight?: number
@@ -50,7 +50,7 @@ const getMimeType = (img: string) => {
 
 type evType<T = HTMLImageElement> = SyntheticEvent<T, Event>
 
-export default class Image extends React.Component<Props, {}> {
+export default class Image extends React.Component<Props> {
 
 	private ref: React.RefObject<HTMLImageElement> = React.createRef()
 	private plchldr: React.RefObject<HTMLDivElement> = React.createRef()

@@ -2,33 +2,21 @@
 
 ## Folders
 
-## __tests__
-
-Test files to test webpage or single components
-
-### Components
-
-Folder where you put your React components
-
-### libs
-
-Serverside Internal libs
-
-### pages
-
-NextJS Pages
-
-### public
-
-Static files
-
-### Scripts
-
-Scripts used by the project
-
-### styl
-
-Stylus files location
+- \__tests__: Test files to test webpage or single components
+- docker: Docker files to launch in a Container
+- public: Static files
+  - assets: Generally used for Static assets like Pictures
+  - uploads: used for user uploaded files
+- scripts: Contains scripts to quicky make actions (take  look in each file to see what it does)
+- src: Source folder
+  - client: Client-side Elements
+    - components: Components used in pages
+    - libs: Code used by the Client
+    - styl: Stylus file location
+      - modules: Stylus module location
+  - common: Elements used by both Client-side and Server-side code
+  - pages: Contains your NextJS pages
+  - server: Custom server folder (if you are doing a basic NextJS app you can freely delete this folder)
 
 ## TODO list
 
@@ -48,6 +36,9 @@ Stylus files location
 - [ ] Support both Stylus CSS modules and purge CSS
 - [ ] Support typed stylus files
 
+## Custom Server
+
+If you want to have a Custom server you simply have to start editing `src/server/server.ts` and after that to dev run `yarn cs-dev`
 
 ## Packages
 
@@ -83,3 +74,4 @@ Stylus files location
 - eslint-plugin-react: ESLint React Plugin
 - jest: Jest tessting framework
 - react-test-renderer: Test React components
+- ts-node-dev: Start the developpement server and restart it on changes (remove this dev-deps if you're not using a custom server)
