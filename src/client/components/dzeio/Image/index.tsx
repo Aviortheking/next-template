@@ -1,7 +1,9 @@
-import React, { SyntheticEvent } from 'react'
-import css from '@smd/Image.module.styl'
+import React from 'react'
+import { buildClassName } from '../Util'
 
-interface Props {
+import css from './Image.module.styl'
+
+export interface ImageProps {
 	defaultHeight?: number
 	src?: string
 	sources?: Array<string>
@@ -18,6 +20,15 @@ interface Props {
 		width?: number|string
 	}
 	alt?: string
+	classes?: string
+	className?: string
+	onClick?: () => void
+}
+
+enum images {
+	JPEG = 'image/jpeg',
+	XICON = 'image/x-icon',
+	TIFF = 'image/tiff'
 }
 
 const mimeTypes = {
@@ -25,22 +36,22 @@ const mimeTypes = {
 	bmp: 'image/bmp',
 	gif: 'image/gif',
 
-	ico: 'image/x-icon',
-	cur: 'image/x-icon',
+	ico: images.XICON,
+	cur: images.XICON,
 
-	jpg: 'image/jpeg',
-	jpeg: 'image/jpeg',
-	jfif: 'image/jpeg',
-	pjpeg: 'image/jpeg',
-	pjp: 'image/jpeg',
+	jpg: images.JPEG,
+	jpeg: images.JPEG,
+	jfif: images.JPEG,
+	pjpeg: images.JPEG,
+	pjp: images.JPEG,
 
 	png: 'image/png',
 	svg: 'image/svg+xml',
 
-	tif: 'image/tiff',
-	tiff: 'image/tiff',
+	tif: images.TIFF,
+	tiff: images.TIFF,
 
-	webp: 'image/webp',
+	webp: 'image/webp'
 }
 
 const getMimeType = (img: string) => {
@@ -48,9 +59,9 @@ const getMimeType = (img: string) => {
 	return mimeTypes[arr[arr.length-1] as 'apng'] || mimeTypes.png
 }
 
-type evType<T = HTMLImageElement> = SyntheticEvent<T, Event>
+type evType<T = HTMLImageElement> = React.SyntheticEvent<T, Event>
 
-export default class Image extends React.Component<Props> {
+export default class Image extends React.Component<ImageProps> {
 
 	private ref: React.RefObject<HTMLImageElement> = React.createRef()
 	private plchldr: React.RefObject<HTMLDivElement> = React.createRef()
@@ -78,7 +89,9 @@ export default class Image extends React.Component<Props> {
 			this.onScroll()
 			this.onResize()
 		}
-		if (this.isFullscreen) {this.onClick()}
+		if (this.isFullscreen) {
+			this.onClick()
+		}
 	}
 
 	public async componentWillUnmount() {
@@ -90,33 +103,35 @@ export default class Image extends React.Component<Props> {
 
 	public render() {
 		const pic = (
-			<picture ref={this.pic}>
-				{this.props.sources && this.props.sources.map((el,index) => (
+			<picture ref={this.pic} className={this.props.classes}>
+				{this.props.sources && this.props.sources.map((el, index) => (
 					<source key={index} srcSet={el} type={getMimeType(el)}/>
 				))}
 				<img
-					className={css.image}
+					className={buildClassName([css.image], [this.props.className])}
 					ref={this.ref}
 					src={this.props.src}
-					onClick={this.props.canFullscreen && this.onClick || undefined}
+					onClick={this.props.canFullscreen && this.onClick || this.props.onClick}
 					onLoad={this.props.default && this.onLoad || undefined}
 					onError={this.props.deleteOnError && this.onError || undefined}
 					style={{
 						width: this.props.default?.width,
 						height: this.props.default?.height,
 						maxHeight: this.props.max?.height,
-						maxWidth: this.props.max?.width,
+						maxWidth: this.props.max?.width
 					}}
 					alt={this.props.alt}
 				/>
 			</picture>
 		)
-		if (this.props.canFullscreen) {return (
-			<div ref={this.parent}>
-				<div ref={this.plchldr} className={css.none}></div>
-				{pic}
-			</div>
-		)}
+		if (this.props.canFullscreen) {
+			return (
+				<div ref={this.parent}>
+					<div ref={this.plchldr} className={css.none}></div>
+					{pic}
+				</div>
+			)
+		}
 		return pic
 	}
 
@@ -146,6 +161,9 @@ export default class Image extends React.Component<Props> {
 		if (!this.ref.current || !this.props.canFullscreen || !this.plchldr.current) {
 			return
 		}
+		if (this.props.onClick) {
+			this.props.onClick()
+		}
 
 		const i = this.ref.current
 		const c = this.plchldr.current
@@ -161,7 +179,9 @@ export default class Image extends React.Component<Props> {
 			i.classList.add(css.after)
 
 			setTimeout(() => {
-				if (i.classList.contains(css.ph2) || i.classList.contains(css.ph1) || this.isFullscreen) {return}
+				if (i.classList.contains(css.ph2) || i.classList.contains(css.ph1) || this.isFullscreen) {
+					return
+				}
 				const w = this.valToPixel(this.props.width)
 				const mh = this.valToPixel(this.props.max?.height)
 				const mw = this.valToPixel(this.props.max?.width)
@@ -206,4 +226,5 @@ export default class Image extends React.Component<Props> {
 	private w(...messages: any) {
 		console.warn('[ Picture ]', ...messages)
 	}
+
 }

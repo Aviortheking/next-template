@@ -29,7 +29,6 @@ module.exports = withPlugins([
 		// 	}
 		// }],
 	], {
-		exportTrailingSlash: true,
 		plugins: [
 			["styled-jsx/babel", {
 				optimizeForSpeed: true,

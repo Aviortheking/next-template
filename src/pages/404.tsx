@@ -4,8 +4,9 @@ import Error from './_error'
 export default class E404 extends React.Component {
 
 	public render() {
-		return(
+		return (
 			<Error statusCode={404} />
 		)
 	}
+
 }
