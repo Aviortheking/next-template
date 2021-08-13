@@ -19,7 +19,7 @@
 		"@zeit/next-stylus": "^1.0.1",
 		"express": "^4.17.1",
 		"glob": "^7.1.6",
-		"next": "^9.3.3",
+		"next": "^11.1.0",
 		"next-compose-plugins": "^2.2.0",
 		"next-purgecss": "^4.0.0",
 		"next-seo": "^4.7.3",
