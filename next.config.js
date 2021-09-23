@@ -1,41 +1,7 @@
-const stylus = require('@zeit/next-stylus')
-const purgeCSS = require('next-purgecss')
+// Use Compose plugin for easier maintenance
 const withPlugins = require('next-compose-plugins')
-const {PHASE_DEVELOPMENT_SERVER} = require('next/constants')
+const { plugins, config } = require('@dzeio/config/next.config')
 
-module.exports = withPlugins([
-		[stylus, {
-			cssModules: true,
-			cssLoaderOptions: {
-				localIdentName: "[hash:base64:6]",
-			},
-			[PHASE_DEVELOPMENT_SERVER]: {
-				cssLoaderOptions: {
-					localIdentName: "[path][name]__[local]"
-				}
-			}
-		}],
-		// [purgeCSS, {
-		// 	purgeCssPaths: [
-		// 		'pages/**/*',
-		// 		'components/**/*',
-		// 		'styl/**/*'
-		// 	],
-		// 	purgeCSS: {
-		// 		content: [
-		// 			'components/**/*.tsx',
-		// 			'pages/**/*.tsx'
-		// 		]
-		// 	}
-		// }],
-	], {
-		plugins: [
-			["styled-jsx/babel", {
-				optimizeForSpeed: true,
-				vendorPrefixes: true,
-				sourceMaps: true,
-				plugins: ["styled-jsx-plugin-stylus"]
-			}]
-		]
-	}
+module.exports = withPlugins([...plugins],
+	config()
 )

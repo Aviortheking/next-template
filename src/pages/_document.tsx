@@ -1,16 +1,13 @@
 import React from 'react'
+// eslint-disable-next-line @next/next/no-document-import-in-page
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-import Favicons from '@cp/Favicons'
-
-export default class CDocument extends Document {
+export default class CustomDocument extends Document {
 
 	public render() {
 		return (
-			<Html>
-				<Head>
-					<Favicons />
-				</Head>
+			<Html lang="en">
+				<Head />
 				<body>
 					<Main />
 					<NextScript />
@@ -18,5 +15,4 @@ export default class CDocument extends Document {
 			</Html>
 		)
 	}
-
 }

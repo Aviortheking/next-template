@@ -1,0 +1,17 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"command": "docker build -f ./.devcontainer/Dockerfile -t nextjs_project_dev . && docker run --rm -it --mount type=bind,source=\"$(pwd)\",target=/app --publish 127.0.0.1:3000:3000 nextjs_project_dev",
+			"name": "Run devcontainer",
+			"request": "launch",
+			// "type": "",
+			"env": {
+				"DOCKER_BUILDKIT": "0"
+			}
+		}
+	]
+}

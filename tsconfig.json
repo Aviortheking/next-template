@@ -1,27 +1,16 @@
 {
+	"extends": "./node_modules/@dzeio/config/tsconfig.nextjs.json",
 	"compilerOptions": {
-		"target": "es5",
-		"lib": [
-		"dom",
-		"dom.iterable",
-		"esnext"
-		],
-		"allowJs": true,
-		"skipLibCheck": true,
-		"strict": true,
-		"forceConsistentCasingInFileNames": true,
-		"noEmit": true,
-		"esModuleInterop": true,
+		"target": "esnext",
 		"module": "esnext",
-		"moduleResolution": "node",
-		"resolveJsonModule": true,
-		"isolatedModules": true,
-		"jsx": "preserve",
 		"baseUrl": "./src",
 		"paths": {
-			"@styl/*": ["client/styl/*"],
-			"@cp/*": ["client/components/*"],
-			"@smd/*": ["client/styl/modules/*"],
+			"@styl/*": [
+				"styl/*"
+			],
+			"@cp/*": [
+				"components/*"
+			],
 		}
 	},
 	"exclude": [
@@ -31,7 +20,7 @@
 	],
 	"include": [
 		"next-env.d.ts",
-		"src/client/styl/stylus.d.ts",
+		"src/styl/stylus.d.ts",
 		"**/*.ts",
 		"**/*.tsx"
 	]

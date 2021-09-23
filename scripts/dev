@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-cd ..
-docker-compose -f docker/docker-compose.yml -f docker/docker-compose.override.yml up

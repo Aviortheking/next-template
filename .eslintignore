@@ -2,7 +2,7 @@ node_modules
 
 out
 .next
-
+next.config.js
 next-env.d.ts
 *.js
 __tests__
