@@ -1,4 +1,4 @@
-# This Dockerfile allows you to run NextJS in server mode
+# This Dockerfile allows you to run NextJS in a static container (no server side)
 
 #########
 # Build #
@@ -29,32 +29,16 @@ RUN npm ci --omit=dev
 ADD . .
 
 # build
-RUN npm run build
+RUN npm run build &&\
+	npm run export
 
 ##############
 # Production #
 ##############
-FROM node:alpine
+FROM docker.io/nginx:alpine
 
-# inform software to be in production
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
-
-# run as non root user
-USER node
-
-# go to work folder
-WORKDIR /home/node
+# go to NGINX folder
+WORKDIR /usr/share/nginx/html
 
 # copy from build image
-COPY --from=BUILD_IMAGE /home/node/package.json ./package.json
-COPY --from=BUILD_IMAGE /home/node/node_modules ./node_modules
-COPY --from=BUILD_IMAGE /home/node/.next ./.next
-COPY --from=BUILD_IMAGE /home/node/next.config.js ./
-COPY --from=BUILD_IMAGE /home/node/public ./public
-
-# Expose port
-EXPOSE 3000
-
-# run it !
-CMD ["npm", "run", "start"]
+COPY --from=BUILD_IMAGE /home/node/out ./

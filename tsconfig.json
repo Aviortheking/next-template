@@ -4,14 +4,7 @@
 		"target": "esnext",
 		"module": "esnext",
 		"baseUrl": "./src",
-		"paths": {
-			"@styl/*": [
-				"styl/*"
-			],
-			"@cp/*": [
-				"components/*"
-			],
-		}
+		"incremental": true
 	},
 	"exclude": [
 		"node_modules",
@@ -20,7 +13,7 @@
 	],
 	"include": [
 		"next-env.d.ts",
-		"src/styl/stylus.d.ts",
+		"stylus.d.ts",
 		"**/*.ts",
 		"**/*.tsx"
 	]
